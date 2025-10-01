@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página con Imagen y Música</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        /* Mensaje arriba */
+        #mensaje {
+            position: fixed;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            animation: fadeOut 5s forwards;
+            pointer-events: none; /* para que no interfiera */
+            user-select: none;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        img {
+            max-width: 80vw;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            opacity: 0;
+            animation: fadeIn 5s ease-out forwards;
+            display: block;
+            border-radius: 8px; /* opcional */
+        }
+
+        @media (max-width: 480px) {
+            img {
+                max-width: 60vw;
+                max-height: 60vh;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mensaje">pendeja</div>
+
+    <img src="i.jpg" alt="Imagen centrada y pequeña" />
+
+    <audio autoplay loop>
+        <source src="a.mp3" type="audio/mp3" />
+        Tu navegador no soporta audio.
+    </audio>
+
+</body>
+</html>
