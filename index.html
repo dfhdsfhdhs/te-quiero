@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Página con Imagen, Música y Mensaje</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background-color: #000;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; flex-direction: column;
+    color: white; font-family: Arial, sans-serif;
+  }
+
+  #mensaje {
+    position: fixed; top: 10px; width: 100%;
+    text-align: center;
+    font-size: 2rem; font-weight: bold; color: #fff;
+    pointer-events: none; user-select: none; z-index: 10;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  /* Imagen inicial oculta */
+  #imagen {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    border-radius: 8px;
+    transition: opacity 5s ease-out;
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    #imagen {
+      max-width: 60vw;
+      max-height: 60vh;
+    }
+  }
+
+  /* Botón grande y centrado */
+  #startButton {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-size: 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<button id="startButton">aquí</button>
+
+<div id="mensaje">pendeja</div>
+
+<img id="imagen" src="i.jpg" alt="Imagen centrada y pequeña" />
+
+<audio id="audio" loop>
+  <source src="a.mp3" type="audio/mp3" />
+  Tu navegador no soporta audio.
+</audio>
+
+<script>
+  const startButton = document.getElementById('startButton');
+  const imagen = document.getElementById('imagen');
+  const audio = document.getElementById('audio');
+  const mensaje = document.getElementById('mensaje');
+
+  startButton.addEventListener('click', () => {
+    // Ocultar botón
+    startButton.style.display = 'none';
+
+    // Mostrar imagen y hacer fade-in
+    imagen.style.display = 'block';
+    // Forzar un reflow para que la transición funcione
+    void imagen.offsetWidth;
+    imagen.style.opacity = '1';
+
+    // Reproducir audio
+    audio.play().catch(() => {
+      alert('No se pudo reproducir el audio.');
+    });
+
+    // Mostrar mensaje
+    mensaje.style.opacity = '1';
+
+    // Ocultar mensaje después de 5 segundos
+    setTimeout(() => {
+      mensaje.style.opacity = '0';
+    }, 5000);
+  });
+</script>
+
+</body>
+</html>
